@@ -5,7 +5,7 @@ import { AiFillPlusSquare } from 'react-icons/ai'
 import { BiHeartSquare } from 'react-icons/bi'
 function Sidebar() {
   return (
-    <aside className="w-60 pt-6 flex flex-col bg-sidebar">
+    <aside className="w-60 pt-6 flex flex-col bg-sidebar flex-shrink-0">
       <a href="#" className="mb-5 px-4">
         <img src={logo} alt="logo" className="h-10" />
       </a>

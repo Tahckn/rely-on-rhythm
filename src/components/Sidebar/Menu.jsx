@@ -6,7 +6,7 @@ import * as React from 'react'
 
 function Menu() {
   const activeClassName =
-    'h-10 flex gap-x-4 items-center text-sm font-semibold text-white bg-active rounded hover:text-white px-4'
+    'h-10 flex gap-x-4 items-center text-sm font-semibold outline-none text-white ring-1 ring-primary ring-opacity-60 bg-active rounded hover:text-white px-4'
   const normal =
     'h-10 flex gap-x-4 items-center text-sm font-semibold text-link rounded hover:text-white hover:transition duration-300 px-4'
   return (
@@ -19,7 +19,11 @@ function Menu() {
             className={({ isActive }) => (isActive ? activeClassName : normal)}
           >
             <span>
-              <AiOutlineHome color="#c33e47" size="22" />
+              <AiOutlineHome
+                className="active:text-white"
+                color="#c33e47"
+                size="22"
+              />
             </span>
             Home
           </NavLink>

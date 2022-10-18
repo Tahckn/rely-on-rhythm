@@ -11,10 +11,21 @@ module.exports = {
         footer: '#181818',
         sidebar: '#000',
       },
+      animation: {
+        'spin-fast': 'spin 0.3s ease-in-out',
+        'spin-reverse': 'reverse-spin 0.3s ease-in-out',
+      },
+      keyframes: {
+        'reverse-spin': {
+          from: {
+            transform: 'rotate(360deg)',
+          },
+        },
+      },
       fontSize: {
         s: '0.813rem',
       },
     },
   },
-  plugins: [],
+  plugins: [require('@tailwindcss/line-clamp')],
 }

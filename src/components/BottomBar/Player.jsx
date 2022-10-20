@@ -66,8 +66,8 @@ function Player() {
           <CustomRange
             step={0.1}
             min={0}
-            h={3}
-            w={3}
+            height={'h-3'}
+            width={'w-3'}
             max={state?.duration || 1}
             value={state?.time}
             onChange={(value) => controls.seek(value)}
@@ -78,7 +78,10 @@ function Player() {
         </div>
       </div>
       <div className="min-w-[11.25rem] w-[30%] flex items-center justify-end">
-        <button className="w-8 h-8 flex items-center justify-center text-white text-opacity-70 hover:text-opacity-100 duration-200">
+        <button
+          onClick={controls[state.muted ? 'unmute' : 'mute']}
+          className="w-8 h-8 flex items-center justify-center text-white text-opacity-70 hover:text-opacity-100 duration-200"
+        >
           {volumeIcon}
         </button>
         <div className="w-[5.813rem] max-w-full">
@@ -86,10 +89,13 @@ function Player() {
             step={0.01}
             min={0}
             max={1}
-            h={2}
-            w={2}
-            value={state?.volume}
-            onChange={(value) => controls.volume(value)}
+            height={'h-2'}
+            width={'w-2'}
+            value={state?.muted ? 0 : state?.volume}
+            onChange={(value) => {
+              controls.unmute()
+              controls.volume(value)
+            }}
           />
         </div>
         <button className="w-8 h-8 flex items-center justify-center text-white text-opacity-70 hover:text-opacity-100 duration-200">

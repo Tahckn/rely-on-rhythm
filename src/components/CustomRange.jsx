@@ -1,7 +1,7 @@
 import { Range, getTrackBackground } from 'react-range'
 import { useState } from 'react'
 
-function CustomRange({ value, step, min, max, onChange }) {
+function CustomRange({ value, step, min, max, onChange, h, w }) {
   const [hover, setHover] = useState(false)
   function toggleHover() {
     setHover(true)
@@ -44,7 +44,7 @@ function CustomRange({ value, step, min, max, onChange }) {
       renderThumb={({ props, isDragged }) => (
         <div
           {...props}
-          className={`h-3 w-3 rounded-full outline-none bg-white shadow-sm shadow-white duration-50 ${
+          className={`h-${h} w-${w} rounded-full outline-none bg-white shadow-sm shadow-white duration-50 ${
             !isDragged ? 'opacity-0' : ''
           } group-hover:opacity-100`}
           style={{ ...props.style }}

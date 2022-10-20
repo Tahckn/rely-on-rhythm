@@ -13,11 +13,22 @@ import { IoVolumeHighOutline } from 'react-icons/io5'
 import { useAudio } from 'react-use'
 import { secondsToTime } from '../../utils'
 import CustomRange from '../CustomRange'
+import { useMemo } from 'react'
 
 function Player() {
   const [audio, state, controls, ref] = useAudio({
     src: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3',
   })
+
+  const volumeIcon = useMemo(() => {
+    if (state.volume === 0 || state.muted) return <IoVolumeOffOutline />
+
+    if (state.volume > 0 && state.volume < 0.33) return <IoVolumeLowOutline />
+
+    if (state.volume >= 0.33 && state.volume < 0.66)
+      return <IoVolumeMediumOutline />
+    return <IoVolumeHighOutline />
+  }, [state.volume, state.muted])
 
   return (
     <div className="flex px-4 justify-between items-center h-full">
@@ -55,6 +66,8 @@ function Player() {
           <CustomRange
             step={0.1}
             min={0}
+            h={3}
+            w={3}
             max={state?.duration || 1}
             value={state?.time}
             onChange={(value) => controls.seek(value)}
@@ -64,7 +77,25 @@ function Player() {
           </div>
         </div>
       </div>
-      <div className="min-w-[11.25rem] w-[30%] flex justify-end">sag</div>
+      <div className="min-w-[11.25rem] w-[30%] flex items-center justify-end">
+        <button className="w-8 h-8 flex items-center justify-center text-white text-opacity-70 hover:text-opacity-100 duration-200">
+          {volumeIcon}
+        </button>
+        <div className="w-[5.813rem] max-w-full">
+          <CustomRange
+            step={0.01}
+            min={0}
+            max={1}
+            h={2}
+            w={2}
+            value={state?.volume}
+            onChange={(value) => controls.volume(value)}
+          />
+        </div>
+        <button className="w-8 h-8 flex items-center justify-center text-white text-opacity-70 hover:text-opacity-100 duration-200">
+          <BsFullscreen size={11} />
+        </button>
+      </div>
     </div>
   )
 }

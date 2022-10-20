@@ -3,6 +3,7 @@ import Menu from './Sidebar/Menu'
 import Playlists from './Sidebar/Playlists'
 import { AiFillPlusSquare } from 'react-icons/ai'
 import { BiHeartSquare } from 'react-icons/bi'
+import { BsArrowDownCircle } from 'react-icons/bs'
 function Sidebar() {
   return (
     <aside className="w-60 pt-6 flex flex-col bg-sidebar flex-shrink-0">
@@ -40,6 +41,13 @@ function Sidebar() {
       </nav>
 
       <Playlists />
+      <a
+        href="#"
+        className="text-link font-semibold h-10 border-t border-link/20 text-md gap-2 tracking-tight p-2 flex items-center"
+      >
+        <BsArrowDownCircle className="mx-2" size="22" />
+        <span>Install App </span>
+      </a>
     </aside>
   )
 }

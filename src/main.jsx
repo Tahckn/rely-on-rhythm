@@ -4,6 +4,8 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import { ErrorPage } from './components'
 import App from './App'
 import './index.css'
+import { store } from './stores'
+import { Provider } from 'react-redux'
 
 const router = createBrowserRouter([
   {
@@ -15,6 +17,8 @@ const router = createBrowserRouter([
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <RouterProvider router={router} />
+    <Provider store={store}>
+      <RouterProvider router={router} fallbackElement={<App />} />
+    </Provider>
   </React.StrictMode>
 )

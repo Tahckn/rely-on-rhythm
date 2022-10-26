@@ -13,12 +13,29 @@ import { IoVolumeHighOutline } from 'react-icons/io5'
 import { useAudio } from 'react-use'
 import { secondsToTime } from '../../utils'
 import CustomRange from '../CustomRange'
-import { useMemo } from 'react'
+import { useEffect, useMemo } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { setControls, setPlaying } from '../../stores/player'
 
 function Player() {
-  const [audio, state, controls, ref] = useAudio({
-    src: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3',
+  const dispatch = useDispatch()
+  const { current } = useSelector((state) => state.player)
+
+  const [audio, state, controls] = useAudio({
+    src: current?.src,
   })
+
+  useEffect(() => {
+    controls.play()
+  }, [current])
+
+  useEffect(() => {
+    dispatch(setPlaying(state.playing))
+  }, [state.playing])
+
+  useEffect(() => {
+    dispatch(setControls(controls))
+  }, [])
 
   const volumeIcon = useMemo(() => {
     if (state.volume === 0 || state.muted) return <IoVolumeOffOutline />
@@ -32,8 +49,27 @@ function Player() {
 
   return (
     <div className="flex px-4 justify-between items-center h-full">
-      <div className="min-w-[11.25rem] w-[30%]">sol</div>
-      <div className="max-w-[45.125] w-[40%] flex flex-col items-center">
+      <div className="min-w-[11.25rem] w-[30%] ">
+        {current && (
+          <div className="flex items-center">
+            <div className="flex items-center mr-3">
+              <div className="h-14 w-14 mr-3">
+                <img src={current.image} alt="" />
+              </div>
+              <div>
+                <h6 className="text-sm line-clamp-1">{current.title}</h6>
+                <p className="text-[0.688rem] text-white opacity-70">
+                  {current.description}
+                </p>
+              </div>
+            </div>
+            <button className="w-8 h-8 flex items-center justify-center text-white text-opacity-70 hover:text-opacity-100 duration-200">
+              <BsHeart size={13} />
+            </button>
+          </div>
+        )}
+      </div>
+      <div className="max-w-[45.125] w-[40%] flex flex-col px-4 items-center">
         <div className="flex  items-center gap-x-2">
           <button className="w-8 h-8 flex items-center justify-center text-white text-opacity-70 hover:text-opacity-100 duration-200">
             <BsShuffle size={14} />

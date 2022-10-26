@@ -34,13 +34,21 @@ function SongItem({ item }) {
           src={item.image}
           alt={item.title}
         />
-        <div className="opacity-0 translate-y-5 group-hover:translate-y-1 transition-all duration-300 ease-out group-hover:opacity-100">
+        <div
+          className={`opacity-0 ${
+            isCurrentItem ? 'opacity-100' : ''
+          } translate-y-5 group-hover:translate-y-1 transition-all duration-300 ease-out group-hover:opacity-100`}
+        >
           <button
             onClick={updateCurrent}
             className="flex hover:scale-110 duration-100 items-center justify-center w-10 h-10 shadow-lg rounded-full bg-primary absolute bottom-2 right-2"
           >
             {isCurrentItem ? (
-              <BsFillPauseFill color="white" size="24" />
+              <BsFillPauseFill
+                className="opacity-100"
+                color="white"
+                size="24"
+              />
             ) : (
               <BsFillPlayFill color="white" size="24" />
             )}

@@ -82,21 +82,22 @@ function Home() {
       type: 'Energy',
       src: 'https://files.freemusicarchive.org/storage-freemusicarchive-org/tracks/3BiQrAaYQ1A3DENOeXJcEzLQV0geMHpQy45sMVy5.mp3',
     },
+    //* TO ADD MORE MUSIC STYLE
   ]
 
-  //* TO ADD MORE MUSIC STYLE
-
-  const Energy = items.filter((item) => item.type === 'Energy')
-  const Chill = items.filter((item) => item.type === 'Chill')
-  const Instrumental = items.filter((item) => item.type === 'Instrumental')
-  const Piano = items.filter((item) => item.type === 'Piano')
+  const types = items.map((item) => item.type)
+  const uniqTypes = [...new Set(types)]
 
   return (
     <div className="grid gap-y-8">
-      <Section title="Energy" more="/blabalba" items={Energy} />
-      <Section title="Chill Out" more="/blabalba" items={Chill} />
-      <Section title="Instrumental" more="/blabalba" items={Instrumental} />
-      <Section title="Peaceful Piano" more="/blabalba" items={Piano} />
+      {uniqTypes.map((type, index) => (
+        <Section
+          key={index}
+          title={type}
+          more="/blabalba"
+          items={items.filter((item) => item.type === type)}
+        />
+      ))}
     </div>
   )
 }

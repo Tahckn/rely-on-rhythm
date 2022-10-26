@@ -69,7 +69,7 @@ function Player() {
           </div>
         )}
       </div>
-      <div className="max-w-[45.125] w-[40%] flex flex-col px-4 items-center">
+      <div className="max-w-[45.125] pt-2 w-[40%] flex flex-col px-4 items-center">
         <div className="flex  items-center gap-x-2">
           <button className="w-8 h-8 flex items-center justify-center text-white text-opacity-70 hover:text-opacity-100 duration-200">
             <BsShuffle size={14} />
@@ -94,7 +94,7 @@ function Player() {
             <IoRepeatOutline size={18} />
           </button>
         </div>
-        <div className="w-full flex items-center gap-x-2">
+        <div className="w-full flex mt-1 items-center gap-x-2">
           {audio}
           <div className="text-[0.7rem] text-white text-opacity-70">
             {secondsToTime(state?.time)}

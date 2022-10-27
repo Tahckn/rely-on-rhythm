@@ -24,7 +24,9 @@ function SongItem({ item }) {
 
   return (
     <NavLink
-      className={'bg-footer p-4 rounded-lg hover:bg-active duration-300 group'}
+      className={
+        'bg-footer min-w-[120px] max-w-fit p-4 rounded-lg hover:bg-active duration-300 group'
+      }
       key={item.id}
       to="/"
     >

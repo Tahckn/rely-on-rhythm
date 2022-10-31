@@ -22,6 +22,7 @@ function Section({ title, more = false, items }) {
     else setItem(wide)
   }, [width])
 
+  const isMobile = navigator.userAgentData?.mobile
   return (
     <section>
       <header className="flex items-center justify-between mb-4">
@@ -41,7 +42,7 @@ function Section({ title, more = false, items }) {
       </header>
       <div
         className={`grid w-full   grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 xl:grid-cols-8 ${
-          width < 640 ? 'gap-x-2 columns-{241}' : 'gap-x-5'
+          width < 640 || isMobile ? 'gap-x-2 ' : 'gap-x-5'
         }`}
       >
         {item.map((item) => (

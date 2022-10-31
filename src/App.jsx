@@ -1,10 +1,12 @@
 import { Sidebar, Content, BottomBar } from './components'
 
 function App() {
+  const isMobile = navigator.userAgentData?.mobile
+
   return (
     <>
       <div className="wrapper">
-        <Sidebar />
+        {isMobile ? null : <Sidebar />}
         <Content />
       </div>
       <BottomBar />

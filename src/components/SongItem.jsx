@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { NavLink } from 'react-router-dom'
 import { setCurrent } from '../stores/player'
 
-function SongItem({ item }) {
+function SongItem({ item, width }) {
   const dispatch = useDispatch()
   const { current, playing, controls } = useSelector((state) => state.player)
 
@@ -24,9 +24,7 @@ function SongItem({ item }) {
 
   return (
     <NavLink
-      className={
-        'bg-footer min-w-[120px] max-w-fit p-4 rounded-lg hover:bg-active duration-300 group'
-      }
+      className={'bg-footer  p-4 rounded-lg hover:bg-active duration-300 group'}
       key={item.id}
       to="/"
     >

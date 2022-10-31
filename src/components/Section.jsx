@@ -39,9 +39,13 @@ function Section({ title, more = false, items }) {
           </NavLink>
         )}
       </header>
-      <div className="grid  grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 xl:grid-cols-8 gap-x-6">
+      <div
+        className={`grid w-full   grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 xl:grid-cols-8 ${
+          width < 640 ? 'gap-x-2 columns-{241}' : 'gap-x-5'
+        }`}
+      >
         {item.map((item) => (
-          <SongItem item={item} key={item.id} />
+          <SongItem width={width} item={item} key={item.id} />
         ))}
       </div>
     </section>

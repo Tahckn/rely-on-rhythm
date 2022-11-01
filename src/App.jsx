@@ -1,12 +1,12 @@
 import { Sidebar, Content, BottomBar } from './components'
+import browserMobile from './browserDetect'
 
 function App() {
-  const isMobile = navigator.userAgentData?.mobile
-
+  const mobile = browserMobile()
   return (
     <>
       <div className="wrapper">
-        {isMobile ? null : <Sidebar />}
+        {!mobile && <Sidebar />}
         <Content />
       </div>
       <BottomBar />

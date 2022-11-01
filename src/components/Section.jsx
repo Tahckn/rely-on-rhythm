@@ -2,9 +2,11 @@ import { NavLink } from 'react-router-dom'
 import SongItem from './SongItem'
 import useWindowDimensions from '../widthUtil'
 import { useState, useEffect } from 'react'
+import browserMobile from '../browserDetect'
 
 function Section({ title, more = false, items }) {
   const { width } = useWindowDimensions()
+  const mobile = browserMobile()
 
   const wide = items.slice(0, 8)
   const large = items.slice(0, 6)
@@ -22,7 +24,6 @@ function Section({ title, more = false, items }) {
     else setItem(wide)
   }, [width])
 
-  const isMobile = navigator.userAgentData?.mobile
   return (
     <section>
       <header className="flex items-center justify-between mb-4">
@@ -42,7 +43,7 @@ function Section({ title, more = false, items }) {
       </header>
       <div
         className={`grid w-full   grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 xl:grid-cols-8 ${
-          width < 640 || isMobile ? 'gap-x-2 ' : 'gap-x-5'
+          width < 640 || mobile ? 'gap-x-2 ' : 'gap-x-5'
         }`}
       >
         {item.map((item) => (

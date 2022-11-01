@@ -16,10 +16,12 @@ import CustomRange from '../CustomRange'
 import { useEffect, useMemo } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { setControls, setPlaying } from '../../stores/player'
+import browserMobile from '../../browserDetect'
 
 function Player() {
   const dispatch = useDispatch()
   const { current } = useSelector((state) => state.player)
+  const mobile = browserMobile()
 
   const [audio, state, controls] = useAudio({
     src: current?.src,
@@ -49,26 +51,29 @@ function Player() {
 
   return (
     <div className="flex px-4 justify-between items-center h-full">
-      <div className="min-w-[11.25rem] w-[30%] ">
-        {current && (
-          <div className="flex items-center">
-            <div className="flex items-center mr-3">
-              <div className="h-14 w-14 mr-3">
-                <img src={current.image} alt="" />
+      {!mobile && (
+        <div className="min-w-[11.25rem] ${} w-[30%] ">
+          {current && (
+            <div className="flex items-center">
+              <div className="flex items-center mr-3">
+                <div className="h-14 w-14 mr-3">
+                  <img src={current.image} alt="" />
+                </div>
+                <div>
+                  <h6 className="text-sm line-clamp-1">{current.title}</h6>
+                  <p className="text-[0.688rem] text-white opacity-70">
+                    {current.description}
+                  </p>
+                </div>
               </div>
-              <div>
-                <h6 className="text-sm line-clamp-1">{current.title}</h6>
-                <p className="text-[0.688rem] text-white opacity-70">
-                  {current.description}
-                </p>
-              </div>
+              <button className="w-8 h-8 flex items-center justify-center text-white text-opacity-70 hover:text-opacity-100 duration-200">
+                <BsHeart size={13} />
+              </button>
             </div>
-            <button className="w-8 h-8 flex items-center justify-center text-white text-opacity-70 hover:text-opacity-100 duration-200">
-              <BsHeart size={13} />
-            </button>
-          </div>
-        )}
-      </div>
+          )}
+        </div>
+      )}
+
       <div className="max-w-[45.125] pt-2 w-[40%] flex flex-col px-4 items-center">
         <div className="flex  items-center gap-x-2">
           <button className="w-8 h-8 flex items-center justify-center text-white text-opacity-70 hover:text-opacity-100 duration-200">

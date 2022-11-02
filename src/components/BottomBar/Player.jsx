@@ -74,7 +74,11 @@ function Player() {
         </div>
       )}
 
-      <div className="max-w-[45.125] pt-2 w-[40%] flex flex-col px-4 items-center">
+      <div
+        className={`max-w-[45.125] ${
+          mobile && 'ml-2'
+        } pt-2 w-[40%]  flex flex-col px-4 items-center`}
+      >
         <div className="flex  items-center gap-x-2">
           <button className="w-8 h-8 flex items-center justify-center text-white text-opacity-70 hover:text-opacity-100 duration-200">
             <BsShuffle size={14} />

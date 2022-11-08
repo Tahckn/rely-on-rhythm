@@ -50,9 +50,9 @@ function Player() {
   }, [state.volume, state.muted])
 
   return (
-    <div className="flex px-4 justify-between items-center h-full">
+    <div className="flex px-4 w-full justify-between items-center h-full">
       {!mobile && (
-        <div className="min-w-[11.25rem] ${} w-[30%] ">
+        <div className="min-w-[11.25rem]  w-[30%] ">
           {current && (
             <div className="flex items-center">
               <div className="flex items-center mr-3">

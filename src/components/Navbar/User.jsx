@@ -3,7 +3,7 @@ import { AiFillCaretDown } from 'react-icons/ai'
 
 function User() {
   const user = {
-    name: 'Taha Ceken',
+    name: 'Taha Çeken',
     avatar: 'https://avatars.githubusercontent.com/u/77683100?s=40&v=4',
   }
 

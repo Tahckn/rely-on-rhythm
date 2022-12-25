@@ -17,7 +17,7 @@ function Search() {
         placeholder="Artists or songs"
         className="h-10 outline-none font-medium text-black pl-12 bg-white rounded-3xl max-w-full
          w-[22.75rem]
-         placeholder-black/60 text-sm"
+         placeholder-black/50 text-sm"
       />
     </div>
   )

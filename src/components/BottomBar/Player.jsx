@@ -159,7 +159,12 @@ function Player() {
       </div>
       <div ref={fsRef}>
         {isFullScreen ? (
-          <FullScreenPlayer controls={controls} state={state} toggle={toggle} />
+          <FullScreenPlayer
+            volumeIcon={volumeIcon}
+            controls={controls}
+            state={state}
+            toggle={toggle}
+          />
         ) : null}
       </div>
     </div>

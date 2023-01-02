@@ -10,15 +10,22 @@ import { IoVolumeOffOutline } from 'react-icons/io5'
 import { IoVolumeLowOutline } from 'react-icons/io5'
 import { IoVolumeMediumOutline } from 'react-icons/io5'
 import { IoVolumeHighOutline } from 'react-icons/io5'
-import { useAudio } from 'react-use'
+import { useAudio, useFullscreen, useToggle } from 'react-use'
 import { secondsToTime } from '../../utils'
 import CustomRange from '../CustomRange'
-import { useEffect, useMemo } from 'react'
+import { useEffect, useMemo, useRef } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { setControls, setPlaying } from '../../stores/player'
 import browserMobile from '../../browserDetect'
+import FullScreenPlayer from '../FullScreenPlayer'
 
 function Player() {
+  const fsRef = useRef()
+  const [show, toggle] = useToggle(false)
+  const isFullScreen = useFullscreen(fsRef, show, {
+    onClose: () => toggle(false),
+  })
+
   const dispatch = useDispatch()
   const { current } = useSelector((state) => state.player)
   const mobile = browserMobile()
@@ -143,9 +150,17 @@ function Player() {
             }}
           />
         </div>
-        <button className="w-8 h-8 flex items-center justify-center text-white text-opacity-70 hover:text-opacity-100 duration-200">
+        <button
+          onClick={toggle}
+          className="w-8 h-8 flex items-center justify-center text-white text-opacity-70 hover:text-opacity-100 duration-200"
+        >
           <BsFullscreen size={11} />
         </button>
+      </div>
+      <div ref={fsRef}>
+        {isFullScreen ? (
+          <FullScreenPlayer controls={controls} state={state} toggle={toggle} />
+        ) : null}
       </div>
     </div>
   )

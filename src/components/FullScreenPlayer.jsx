@@ -23,8 +23,8 @@ function FullScreenPlayer({ toggle, controls, state, volumeIcon }) {
         style={{ backgroundImage: `url(${current.image})` }}
       ></div>
 
-      <div className="w-[50%] mx-auto">
-        <img src={logo} alt="logo" />
+      <div className="w-[70%] p-6 mx-auto">
+        <img className="bg-transparent" src={logo} alt="logo" />
       </div>
 
       <div className="absolute left-8 bottom-36 flex items-center gap-x-5">

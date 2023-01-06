@@ -151,6 +151,7 @@ function Player() {
           />
         </div>
         <button
+          disabled={!current.image}
           onClick={toggle}
           className="w-8 h-8 flex items-center justify-center text-white text-opacity-70 hover:text-opacity-100 duration-200"
         >

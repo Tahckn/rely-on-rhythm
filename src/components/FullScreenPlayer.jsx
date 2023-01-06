@@ -10,6 +10,7 @@ import { BsFullscreenExit } from 'react-icons/bs'
 import { IoRepeatOutline } from 'react-icons/io5'
 import { secondsToTime } from '../utils'
 import CustomRange from './CustomRange'
+import logo from './img/logo.svg'
 
 function FullScreenPlayer({ toggle, controls, state, volumeIcon }) {
   const { current } = useSelector((state) => state.player)
@@ -21,6 +22,11 @@ function FullScreenPlayer({ toggle, controls, state, volumeIcon }) {
         className="absolute inset-0 bg-cover blur-md opacity-40 bg-center"
         style={{ backgroundImage: `url(${current.image})` }}
       ></div>
+
+      <div className="w-[50%] mx-auto">
+        <img src={logo} alt="logo" />
+      </div>
+
       <div className="absolute left-8 bottom-36 flex items-center gap-x-5">
         <img
           className="w-24 h-24 object-cover rounded-md"

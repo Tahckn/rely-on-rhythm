@@ -1,6 +1,6 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
-
+import browserMobile from '../browserDetect'
 import { BsShuffle } from 'react-icons/bs'
 import { BsPauseCircleFill } from 'react-icons/bs'
 import { BsPlayCircleFill } from 'react-icons/bs'
@@ -13,6 +13,7 @@ import CustomRange from './CustomRange'
 
 function FullScreenPlayer({ toggle, controls, state, volumeIcon }) {
   const { current } = useSelector((state) => state.player)
+  const mobile = browserMobile()
 
   return (
     <div className="h-full relative">
@@ -20,15 +21,17 @@ function FullScreenPlayer({ toggle, controls, state, volumeIcon }) {
         className="absolute inset-0 bg-cover blur-md opacity-40 bg-center"
         style={{ backgroundImage: `url(${current.image})` }}
       ></div>
-      <div className="absolute left-8 bottom-36 flex items-center gap-x-4">
+      <div className="absolute left-8 bottom-36 flex items-center gap-x-5">
         <img
           className="w-24 h-24 object-cover rounded-md"
           src={current.image}
           alt=""
         />
         <div>
-          <h3 className="font-bold text-lg">{current.title}</h3>
-          <p className="font-thin">{current.description}</p>
+          <h3 className="font-semibold text-3xl">{current.title}</h3>
+          <p className="font-thin opacity-60 text-base">
+            {current.description}
+          </p>
         </div>
       </div>
       <div className="w-full absolute bottom-4 flex flex-col px-8 items-center">
@@ -74,7 +77,11 @@ function FullScreenPlayer({ toggle, controls, state, volumeIcon }) {
             <IoRepeatOutline size={18} />
           </button>
         </div>
-        <div className="flex items-center absolute bottom-4 right-6 gap-x-3">
+        <div
+          className={`flex items-center ${
+            mobile ? 'bottom-24 right-6' : 'bottom-4 right-6'
+          } absolute  gap-x-3`}
+        >
           <button
             onClick={controls[state.muted ? 'unmute' : 'mute']}
             className="w-8 h-8 flex items-center justify-center text-white text-opacity-70 hover:text-opacity-100 duration-200"

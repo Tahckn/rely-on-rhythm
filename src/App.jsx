@@ -1,5 +1,4 @@
 import { Sidebar, Content, BottomBar } from './components'
-
 import browserMobile from './browserDetect'
 
 function App() {
